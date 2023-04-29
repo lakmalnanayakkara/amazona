@@ -53,7 +53,7 @@ function HomeScreen() {
                 <img src={product.image} alt={product.name}></img>
               </Link>
               <div className="product-info">
-                <Link to={`/product/${product.slug}`}>
+                <Link to={`/products/${product.slug}`}>
                   <p>{product.name}</p>
                 </Link>
                 <p>
