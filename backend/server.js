@@ -16,7 +16,7 @@ mongoose
 
 const app = express();
 
-//app.use('/api/seed', seedRouter);
+app.use('/api/seed', seedRouter);
 
 app.get('/api/products', function (req, res) {
   res.send(data.products);
