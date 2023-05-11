@@ -1,8 +1,7 @@
 import express from 'express';
 import data from './data.js';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import seedRouter from './routes/seedRoutes.js';
+import mongoose from 'mongoose';
 
 dotenv.config();
 mongoose
@@ -10,13 +9,11 @@ mongoose
   .then(() => {
     console.log('Connected to the database.');
   })
-  .catch((error) => {
-    console.log(error.message);
+  .catch((err) => {
+    console.log(err.messsage);
   });
 
 const app = express();
-
-app.use('/api/seed', seedRouter);
 
 app.get('/api/products', function (req, res) {
   res.send(data.products);
