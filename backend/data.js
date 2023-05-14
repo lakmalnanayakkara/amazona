@@ -1,4 +1,20 @@
+import bcrypt from 'bcrypt';
+const salt = bcrypt.genSaltSync(10);
 const data = {
+  users: [
+    {
+      name: 'pasindu',
+      email: 'pasindu@example.com',
+      password: bcrypt.hashSync('12345', salt),
+      isAdmin: true,
+    },
+    {
+      name: 'lakmal',
+      email: 'lakmal@example.com',
+      password: bcrypt.hashSync('54321', salt),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
       //_id: '1',

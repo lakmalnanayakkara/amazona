@@ -4,8 +4,8 @@ import Products from '../modules/ProdModule.js';
 const ProductRouter = express.Router();
 
 ProductRouter.get('/', async (req, res) => {
-  const products = await Products.find();
-  res.send(products);
+  const product = await Products.find();
+  res.send(product);
 });
 
 ProductRouter.get('/slug/:slug', async (req, res) => {
@@ -25,4 +25,5 @@ ProductRouter.get('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
+
 export default ProductRouter;
