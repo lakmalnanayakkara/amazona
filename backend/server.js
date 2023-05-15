@@ -18,6 +18,9 @@ mongoose
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/api/seed', SeedRouter);
 app.use('/api/products', ProductRouter);
 app.use('/api/products/slug/:slug', ProductRouter);
