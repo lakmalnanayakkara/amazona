@@ -12,6 +12,8 @@ import { Store } from './components/Store';
 import CartScreen from './screens/CartScreen';
 import SignInScreen from './screens/SignInScreen';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -24,6 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -47,15 +50,14 @@ function App() {
                     <LinkContainer to="/orderHistory">
                       <NavDropdown.Item>Order History</NavDropdown.Item>
                     </LinkContainer>
-                    <NavDropdown.Divider>
-                      <Link
-                        className="dropdown-item"
-                        to="#signout"
-                        onClick={signoutHandler}
-                      >
-                        Sign Out
-                      </Link>
-                    </NavDropdown.Divider>
+                    <NavDropdown.Divider />
+                    <Link
+                      className="dropdown-item"
+                      to="#signout"
+                      onClick={signoutHandler}
+                    >
+                      Sign Out
+                    </Link>
                   </NavDropdown>
                 ) : (
                   <Link className="nav-link" to="/signin">
