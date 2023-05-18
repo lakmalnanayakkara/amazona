@@ -1,6 +1,4 @@
 import express from 'express';
-import User from '../modules/UserModel.js';
-import { generateToken } from '../utils.js';
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../modules/OrderModel.js';
 import { isAuth } from '../utils.js';
