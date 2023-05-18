@@ -10,9 +10,9 @@ import Row from 'react-bootstrap/esm/Row.js';
 import Col from 'react-bootstrap/esm/Col.js';
 import Card from 'react-bootstrap/esm/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { useState } from 'react';
 import { useReducer } from 'react';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -29,8 +29,8 @@ function reducer(state, action) {
 
 export default function OrderScreen() {
   const navigate = useNavigate();
-  const { state } = useState(Store);
-  const { userInfo } = state;
+  const state = useState(Store);
+  const userInfo = state;
 
   const params = useParams();
   const { id: orderId } = params;
