@@ -13,7 +13,7 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, order: action.payload, loading: false };
+      return { ...state, orders: action.payload, loading: false };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -26,7 +26,7 @@ export default function OrderHistoryScreen() {
   const { userInfo } = state;
   const navigate = useNavigate();
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
-    loading: false,
+    loading: true,
     error: '',
   });
   useEffect(() => {
@@ -43,30 +43,32 @@ export default function OrderHistoryScreen() {
     };
     fetchData();
   }, [userInfo]);
-  return (
-    <div>
-      <Helmet>
-        <title>Order History</title>
-      </Helmet>
-      <h1>Order History</h1>
-      {loading ? (
-        <LoadingBox></LoadingBox>
-      ) : error ? (
-        <MessageBox varinat="danger">{error}</MessageBox>
-      ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>DATE</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders &&
-              orders.map((order) => (
+  if (!orders) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <div>
+        <Helmet>
+          <title>Order History</title>
+        </Helmet>
+        <h1>Order History</h1>
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox varinat="danger">{error}</MessageBox>
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
@@ -90,9 +92,10 @@ export default function OrderHistoryScreen() {
                   </td>
                 </tr>
               ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
+            </tbody>
+          </table>
+        )}
+      </div>
+    );
+  }
 }
