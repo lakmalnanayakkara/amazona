@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox.js';
 import MessageBox from '../components/MessageBox.js';
@@ -22,8 +22,8 @@ const reducer = (state, action) => {
 };
 
 export default function OrderHistoryScreen() {
-  const { state } = useState(Store);
-  const { userInfo } = state ?? {};
+  const { state } = useContext(Store);
+  const { userInfo } = state;
   const navigate = useNavigate();
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: false,
@@ -34,7 +34,7 @@ export default function OrderHistoryScreen() {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const { data } = await axios.get(`/api/orders/mine`, {
-          headers: { authorization: `Berear ${userInfo.token}` },
+          headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (error) {
