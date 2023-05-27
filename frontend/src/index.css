@@ -15,8 +15,11 @@ main {
   flex: 1;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-outline-primary {
   background-color: #ffc000;
+  color: #100901;
+  border: white;
 }
 
 .products {
