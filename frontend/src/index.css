@@ -90,3 +90,8 @@ main {
 .active-nav {
   left: 0px;
 }
+
+.items {
+  color: white;
+  font-weight: bold;
+}
